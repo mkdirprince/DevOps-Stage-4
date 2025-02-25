@@ -8,6 +8,7 @@ import (
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	gommonlog "github.com/labstack/gommon/log"
@@ -24,6 +25,11 @@ var (
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Println("Warnning: No .env file found")
+	}
+
 	hostport := ":" + os.Getenv("AUTH_API_PORT")
 	userAPIAddress := os.Getenv("USERS_API_ADDRESS")
 
@@ -37,8 +43,8 @@ func main() {
 		UserAPIAddress: userAPIAddress,
 		AllowedUserHashes: map[string]interface{}{
 			"admin_Admin123": nil,
-			"hng_HngTech":   nil,
-			"user_Password":   nil,
+			"hng_HngTech":    nil,
+			"user_Password":  nil,
 		},
 	}
 
