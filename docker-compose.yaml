@@ -1,8 +1,69 @@
 services:
   app:
+    image: frontend
+    build: ./frontend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-api
+      - todos-api
+      - users-api
+    environment:
+      - PORT=${PORT}
+      - AUTH_API_ADDRESS=${AUTH_API_ADDRESS}
+      - TODOS_API_ADDRESS=${TODOS_API_ADDRESS}
+
+  auth-api:
     image: auth-api
     build: ./auth-api
     ports:
-      - 5001:5001
-    env_file:
-      - .env
+      - 8081:8081
+    depends_on:
+      - redis
+    environment:
+      - AUTH_API_PORT=${AUTH_API_PORT}
+      - JWT_SECRET=${JWT_SECRET}
+      - USERS_API_ADDRESS=${USERS_API_ADDRESS}
+
+  todos-api:
+    image: todos-api
+    build: ./todos-api
+    ports:
+      - "8082:8082"
+    depends_on:
+      - redis
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_CHANNEL=${REDIS_CHANNEL}
+
+  users-api:
+    image: users-api
+    build: ./users-api
+    ports:
+      - "8083:8083"
+    depends_on:
+      - redis
+    environment:
+      - SERVER_PORT=${SERVER_PORT}
+      - JWT_SECRET=${JWT_SECRET}
+
+  log-message-processor:
+    image: log-message-processor
+    build: ./log-message-processor
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_CHANNEL=${REDIS_CHANNEL}
+
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - "./redis_data:/data"
