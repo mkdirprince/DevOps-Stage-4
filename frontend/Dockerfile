@@ -1,17 +1,19 @@
-FROM node:14.21.3
+FROM node:14-slim
 
+# Set the working directory
 WORKDIR /app
 
-COPY  package*.json ./
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-RUN npm install 
+# Install dependencies (only production dependencies for a leaner image)
+RUN npm install --only=production
 
+# Copy the rest of the application code
 COPY . .
 
-RUN npm run build
+# Expose the application port
+EXPOSE 8082
 
-EXPOSE 8080
-
-CMD [ "npm", "run", "dev" ]
-
-
+# Run the application
+CMD ["npm", "start"]
