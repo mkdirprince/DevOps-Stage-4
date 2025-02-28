@@ -1,19 +1,12 @@
-FROM node:14-slim
+# Development frontend with hot-reload
+FROM node:14
 
-# Set the working directory
 WORKDIR /app
-
-# Copy package.json and package-lock.json
 COPY package*.json ./
+RUN npm install
 
-# Install dependencies (only production dependencies for a leaner image)
-RUN npm install --only=production
-
-# Copy the rest of the application code
 COPY . .
 
-# Expose the application port
-EXPOSE 8082
+EXPOSE 8080
 
-# Run the application
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
