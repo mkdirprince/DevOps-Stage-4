@@ -23,9 +23,6 @@ services:
     container_name: frontend
     env_file:
       - ./.env
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.frontend.rule=Host(`mkdirprince.uk`)"
