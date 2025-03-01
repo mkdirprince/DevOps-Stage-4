@@ -64,7 +64,7 @@ services:
       - "traefik.http.services.auth-api.loadbalancer.server.port=8081"
     depends_on:
       - users-api
-      - redis
+      - redis-queue
       - zipkin
     networks:
       - microservice
@@ -94,7 +94,7 @@ services:
       # Common configuration
       - "traefik.http.services.users-api.loadbalancer.server.port=8083"
     depends_on:
-      - redis
+      - redis-queue
       - zipkin
     networks:
       - microservice
@@ -124,7 +124,7 @@ services:
       # Common configuration
       - "traefik.http.services.todos-api.loadbalancer.server.port=8082"
     depends_on:
-      - redis
+      - redis-queue
       - zipkin
     networks:
       - microservice
@@ -139,14 +139,14 @@ services:
     environment:
       - ZIPKIN_URL=http://zipkin:9411
     depends_on:
-      - redis
+      - redis-queue
       - zipkin
     networks:
       - microservice
 
-  redis:
+  redis-queue:
     image: redis:alpine
-    container_name: redis
+    container_name: redis-queue
     networks:
       - microservice
 
