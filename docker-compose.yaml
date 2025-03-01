@@ -25,7 +25,7 @@ services:
       - ./.env
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(`mkdirprince.uk`)"
+      - "traefik.http.routers.frontend.rule=Host(`kobby.cloud`)"
       - "traefik.http.routers.frontend.entrypoints=websecure"
       - "traefik.http.routers.frontend.tls=true"
       - "traefik.http.routers.frontend.tls.certresolver=myresolver"
@@ -50,13 +50,13 @@ services:
     labels:
       - "traefik.enable=true"
       # Subdomain approach
-      - "traefik.http.routers.auth-api-domain.rule=Host(`auth.mkdirprince.uk`)"
+      - "traefik.http.routers.auth-api-domain.rule=Host(`auth.kobby.cloud`)"
       - "traefik.http.routers.auth-api-domain.entrypoints=websecure"
       - "traefik.http.routers.auth-api-domain.tls=true"
       - "traefik.http.routers.auth-api-domain.tls.certresolver=myresolver"
       - "traefik.http.routers.auth-api-domain.middlewares=global-middleware@file"
       # Path prefix approach
-      - "traefik.http.routers.auth-api-path.rule=Host(`mkdirprince.uk`) && PathPrefix(`/api/auth`)"
+      - "traefik.http.routers.auth-api-path.rule=Host(`kobby.cloud`) && PathPrefix(`/api/auth`)"
       - "traefik.http.routers.auth-api-path.entrypoints=websecure"
       - "traefik.http.routers.auth-api-path.tls=true"
       - "traefik.http.routers.auth-api-path.middlewares=auth-strip-prefix@file,global-middleware@file"
@@ -81,13 +81,13 @@ services:
     labels:
       - "traefik.enable=true"
       # Subdomain approach
-      - "traefik.http.routers.users-api-domain.rule=Host(`users.mkdirprince.uk`)"
+      - "traefik.http.routers.users-api-domain.rule=Host(`users.kobby.cloud`)"
       - "traefik.http.routers.users-api-domain.entrypoints=websecure"
       - "traefik.http.routers.users-api-domain.tls=true"
       - "traefik.http.routers.users-api-domain.tls.certresolver=myresolver"
       - "traefik.http.routers.users-api-domain.middlewares=global-middleware@file"
       # Path prefix approach
-      - "traefik.http.routers.users-api-path.rule=Host(`mkdirprince.uk`) && PathPrefix(`/api/users`)"
+      - "traefik.http.routers.users-api-path.rule=Host(`kobby.cloud`) && PathPrefix(`/api/users`)"
       - "traefik.http.routers.users-api-path.entrypoints=websecure"
       - "traefik.http.routers.users-api-path.tls=true"
       - "traefik.http.routers.users-api-path.middlewares=users-strip-prefix@file,global-middleware@file"
@@ -111,13 +111,13 @@ services:
     labels:
       - "traefik.enable=true"
       # Subdomain approach
-      - "traefik.http.routers.todos-api-domain.rule=Host(`todos.mkdirprince.uk`)"
+      - "traefik.http.routers.todos-api-domain.rule=Host(`todos.kobby.cloud`)"
       - "traefik.http.routers.todos-api-domain.entrypoints=websecure"
       - "traefik.http.routers.todos-api-domain.tls=true"
       - "traefik.http.routers.todos-api-domain.tls.certresolver=myresolver"
       - "traefik.http.routers.todos-api-domain.middlewares=global-middleware@file"
       # Path prefix approach
-      - "traefik.http.routers.todos-api-path.rule=Host(`mkdirprince.uk`) && PathPrefix(`/api/todos`)"
+      - "traefik.http.routers.todos-api-path.rule=Host(`kobby.cloud`) && PathPrefix(`/api/todos`)"
       - "traefik.http.routers.todos-api-path.entrypoints=websecure"
       - "traefik.http.routers.todos-api-path.tls=true"
       - "traefik.http.routers.todos-api-path.middlewares=todos-strip-prefix@file,global-middleware@file"
