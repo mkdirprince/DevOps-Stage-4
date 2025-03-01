@@ -21,10 +21,10 @@ http:
           - DELETE
           - OPTIONS
         accessControlAllowOriginList:
-          - "https://mkdirprince.uk"
-          - "https://auth.mkdirprince.uk"
-          - "https://users.mkdirprince.uk"
-          - "https://todos.mkdirprince.uk"
+          - "https://kobby.cloud"
+          - "https://auth.kobby.cloud"
+          - "https://users.kobby.cloud"
+          - "https://todos.kobby.cloud"
         accessControlAllowCredentials: true
         accessControlMaxAge: 100
         addVaryHeader: true
